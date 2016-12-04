@@ -1,0 +1,70 @@
+body{
+    min-width: 1350px;
+    min-height: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    overflow-y: hidden;
+    position: relative;
+}
+#container{
+    min-width: 1350px; 
+    min-height: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: hidden;
+    background-color: ghostwhite;
+    border: 1px solid black;
+}
+@keyframes rotateRect{
+    from{ transform: rotate(0deg)}
+    to{ transform: rotate(360deg) }
+}
+#rect{
+    animation: rotateRect 3s linear infinite;
+    -moz-animation: rotateRect 3s linear infinite;
+}
+@keyframes rotateY{
+    from{ transform: rotateY(0deg)}
+    to{transform: rotateY(360deg)}
+}
+#cicleY{
+    animation: rotateY 3s linear infinite;
+    -moz-animation: rotateY 3s linear infinite;
+}
+
+@keyframes rotateX{
+    from{ transform: rotateX(0deg)}
+    to{ transform: rotateX(360deg)}
+}
+
+#cicleX{
+    animation: rotateX 3s linear infinite;
+    -moz-animation: rotateX 3s linear infinite;
+}
+
+@keyframes rotateZ{
+    from{ transform: rotateZ(0deg)}
+    to{ transform: rotateZ(360deg)}
+}
+
+#cicleZ{
+    animation: rotateZ 3s linear infinite;
+    -moz-animation: rotateZ 3s linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate3d(1,1,1,0deg);
+    }
+    to{
+       transform: rotate3d(1,1,1,360deg);
+    }
+}
+#cicle{
+    animation: rotate 3s liner infinite;
+    -moz-animation: rotate 3s linear infinite;
+}
+
