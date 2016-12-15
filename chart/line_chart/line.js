@@ -755,3 +755,62 @@ paramsA[2]=[
 
 var num1 = 1;
 var timer1 = setInterval('drawManyRunLineMap(paint4, axis4, width4, height4, paramsA)', 300);
+
+//曲线图
+var xAxisList5 = new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
+var yAxisList5 = new Array(1,2,3,4,5,6,7,8,9,10);
+var axis5 = new Axis();
+axis5.xAxis = xAxisList5;
+axis5.yAxis = yAxisList5;
+axis5.xButton = 10;
+axis5.yLeft = 10;
+
+var div_line5 = document.getElementById('div_line5');
+var line5 = document.getElementById('line5');
+line5.width = div_line5.clientWidth;
+line5.height = div_line5.clientHeight;
+var paint5 = line5.getContext('2d');
+var width5 = line5.clientWidth;
+var height5 = line5.clientHeight;
+
+console.log('width:'+div_line5.clientWidth);
+console.log('height:'+div_line5.clientHeight);
+window.onload = drawAxis(paint5, axis5, width5, height5);
+
+function drawCurveMap(paint, axis, width, height, params){
+    drawCurve(paint, params, width, height, axis);
+}
+
+function drawCurve(paint, params, width, height, axis){
+    var a = 0.25;
+    var b = 0.25;
+    var pAx, pAy, pBx, pBy;
+    var basicX = axis.yLeft;
+    var basicXScale = (width-2*axis.yLeft)/axis.xAxis.length;
+    var basicY = height - axis.xButton;
+    var basicYScale = (height-2*axis.xButton)/axis.yAxis.length;
+    for(var i=0; i<params.length; i++){
+        if(i == 0){
+            pAx = params[0].x + (params[1].x - params[0].x)*a;
+            pAy = params[0].y + (params[1].y - params[0].y)*a;
+            pBx = params[1].x - (params[2].x - params[0].x)*b;
+            pBy = params[1].y - (params[2].y - params[0].y)*b;
+        }else if(i == params.length-3){
+            pAx = params[params.length-3].x + (params[params.length - 2].x - params[params.length - 4].x)*a;
+            pAy = params[params.length-3].y + (params[params.length - 2].y - params[params.length - 4].y)*a;
+            pBx = params[params.length-2].x - (params[params.length - 1].x - params[params.length - 3].x)*b;
+            pBy = params[params.length-2].y - (params[params.length - 1].y - params[params.length - 3].y)*b;
+        }else{
+            pAx = params[i].x + (params[i+1].x - params[i-1].x)*a;
+            pAy = params[i].y + (params[i+1].y - params[i-1].y)*a;
+            pBx = params[i+1].x - (params[i+2].x - params[i].x)*b;
+            pBy = params[i+1].y - (params[i+2].y - params[i].y)*b;
+        }
+        paint.strokeStyle = 'blue';
+        paint.beginPath();
+        paint.moveTo(basicX+params[i].x*basicXScale, basicY - (basicYScale*params[i].y));
+        paint.bezierCurveTo(basicX+pAx*basicXScale, basicY - (basicYScale*pAy), basicX+pBx*basicXScale, basicY - (pBy*basicYScale), basicX+params[i+1].x*basicXScale, basicY - params[i+1].y*basicYScale);
+        paint.stroke();
+    }
+}
+drawCurveMap(paint5, axis5, width5, height5, paramsA[0]);

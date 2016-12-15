@@ -35,7 +35,7 @@ body{
     position: absolute;
     float: left;
     min-width: 1200px;
-    min-height: 800px;
+    min-height: 900px;
     margin-left: 150px;
     background-color: gainsboro;
     overflow-y: scroll;
