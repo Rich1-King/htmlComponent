@@ -1078,8 +1078,42 @@ function drawCicle(paint){
     drawArc(paint, 100, 100, 80, Math.PI*1.5, Math.PI*2, false, 'green');
 }
 drawCicle(paint7);
-/*paint7.beginPath();
-paint7.arc(200,200,80,0,Math.PI*0.1,false);
-paint7.fillStyle="white";
-paint7.closePath();
-paint7.fill();*/
+
+
+//画旋转的圆
+function drawRunCicle(paint){
+    drawArc(paint, 300, 100, 80, Math.PI*t,Math.PI*t + Math.PI*0.5, false, 'yellow');
+    drawArc(paint, 300, 100, 80, Math.PI*0.5 + Math.PI*t, Math.PI*1 + Math.PI*t, false, 'red');
+    drawArc(paint, 300, 100, 80, Math.PI*1 + Math.PI*t, Math.PI*1.5 + Math.PI*t, false, 'blue');
+    drawArc(paint, 300, 100, 80, Math.PI*1.5 + Math.PI*t, Math.PI*2 + Math.PI*t, false, 'green');
+    t = t+0.05;
+}
+
+var t = 0;
+setInterval('drawRunCicle(paint7, t)', 80);
+
+//画动态生成的圆
+var cicleNum = 0;
+function drawRunCicle1(paint){
+    var color;
+    if(cicleNum <= 0.4){
+        color = 'yellow';
+    }
+    if(cicleNum > 0.4 && cicleNum <= 0.9){
+        color = 'red';
+    }
+    if(cicleNum > 0.9 && cicleNum <= 1.4){
+        color = 'blue';
+    }
+    if(cicleNum > 1.4 && cicleNum <= 1.9){
+        color = 'green';
+    }
+    if(cicleNum >= 2){
+        drawRunCicle(paint, cicleNum);
+        cicleNum =　cicleNum + 0.1;
+        return;
+    }
+    drawArc(paint, 500, 100, 80, Math.PI*cicleNum, Math.PI*cicleNum + Math.PI*0.1, false, color);
+    cicleNum = cicleNum + 0.1;
+}
+setInterval('drawRunCicle1(paint7)', 100);
