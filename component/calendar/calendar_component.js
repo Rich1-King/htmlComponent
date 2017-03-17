@@ -15,20 +15,13 @@ function init(){
 }
 
 function lastMonth(){
+    changeOpations('opacity_hide');
     var month = now.getMonth();
     now.setMonth(month-1);
-    //changeOpations("0");
-    /*var time = new Date();
-    while(true){
-        var time1 = new Date();
-        if(time1.getTime() - time.getTime() > 2000){
-            break;
-        }
-    }*/
     clearDiv();
     init();
     showYearAndMonth();
-    //changeOpations("1");
+    setTimeout('changeOpations(null)', 2000);
 }
 function showYearAndMonth(){
     var year_month = document.getElementById("year_month");
@@ -67,5 +60,5 @@ function clearDiv(){
 
 function changeOpations(value){
     var div = document.getElementById('content');
-    div.style.opacity = value;
+    div.className = value;
 }
