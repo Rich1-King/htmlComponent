@@ -1,0 +1,13 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+@keyframes rotateZ{
+    from{ transform: rotateZ(0deg)}
+    to{ transform: rotateZ(360deg)}
+}
+
+#content{
+    animation: rotateZ 3s linear infinite;
+    -moz-animation: rotateZ 3s linear infinite;
+}
